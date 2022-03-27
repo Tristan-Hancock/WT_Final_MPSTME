@@ -1,0 +1,8 @@
+body {
+ background: url('news5.jpeg') no-repeat center center fixed;
+ background-size: cover;
+ background-position: center;
+ margin-left: 10%;
+ font-size: 23px;
+ font-family: "Trebuchet MS";
+}

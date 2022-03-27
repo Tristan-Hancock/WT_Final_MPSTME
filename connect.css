@@ -1,0 +1,58 @@
+body, html {   
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display:table;
+}
+body {
+    display:table-cell;
+    vertical-align:middle;
+}
+body{
+    background-image: url("css/back.jpg");
+    background-color: grey;
+    max-width: 10%;  
+height: auto;  
+}
+form {
+    display:table;
+    margin:auto;
+    padding: 25px 50px;
+}
+input[type=text] {
+    border: 2px solid red;
+    border-radius: 4px;
+  }
+  input[type=date] {
+    border: 2px solid red;
+    border-radius: 4px;
+  }
+  input[type=button], input[type=submit], input[type=reset] {
+    background-color: #0704aa;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+div.register{
+background-color:rgba(0,0,0,0.5) ;
+width: 100%;
+font-size: 20px;
+border-radius: 10px;
+border:1px solid rgba(250,250,250,0.3);
+box-shadow:3px 3px 15px
+rgba(0,0,0,0.3);
+color:#fff;
+
+  }
+  label
+  {
+    color:aliceblue
+  }
+  div{
+
+    color: #fff;
+  }

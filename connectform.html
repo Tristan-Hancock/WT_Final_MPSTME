@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html >
+    <HEAD>
+        <title>Player Recruitment</title>
+        <meta charset="UTF-8">
+        <META name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="~/Scripts/angular.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"> </script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> </link>
+            <link rel="stylesheet" href="connect.css"> </link>
+            <img src="css/espind.jpeg" alt="mainlogo" class="centre">
+            
+    </HEAD>
+    <body ng-app="">
+        <div class="cen">
+            <form name="myForm" nonvalidate>
+                <h1>Fill in details below to register</h1>
+                <label for="username">Player ID: </label><br />
+                <input type="number" name="idnumber" ng-model="idnumber" ng-minlength="1" ng-maxlength="10" required> <br>
+                <span ng-show="myForm.$submitted || myForm.$dirty">
+                    <span class="error" ng-show="myForm.phone.$error.required"><i class="fa fa-exclamation-circle">Player ID required</i></span>
+                    <span class="error" ng-show="myForm.phone.$error.required"><i class="fa fa-exclamation-circle">Player ID should be 10 digits </i></span>
+                </span><br></br>
+                <label for="username">Username: </label><br />
+                <input class="text-center" name="Player.Username" type="text" id="Username" ng-model="Player.Username"
+                    pattern="[a-zA-Z{1,}]" required /> <br />
+                <span ng-show="myForm.$submitted || myForm.name.$dirty">
+                    <span style="color:rgb(236, 9, 9);font-weight:bold" class="error"
+                        ng-show="myForm.name.$error.pattern"><i class="fa fa-exclamation-circle"></i>Cannot be
+                        Empty</span>
+                </span><br><br>
+
+                <label for="Payer Achievement">Player Achievement: </label><br />
+                <input type="file" name="upload" accept="application/pdf,application/vnd.ms-excel" />
+                
+
+
+
+
+
+
+
+
+                <input type="submit" value="Submit" />
+                <input type="reset" ng-click="resetForm()" value="Reset" />
+
+
+            </form>
+        </div>
+        var PlayerApp = angular.module('PlayerApp', []);
+
+
+            PlayerApp.controller("PlayerController", function ($scope, $http) {
+
+
+                $scope.originalPlayer = {
+                   idnumber: '7032101907',
+                   Username: 'Twisty',
+
+
+                };
+
+
+                $scope.Player = angular.copy($scope.originalPlayer);
+
+
+                $scope.sendPlayerInfo = function () {
+
+                    var onSuccess = function (data, status, headers, config) {
+                        alert('Player saved successfully.');
+                    };
+
+                    var onError = function (data, status, headers, config) {
+                        alert('Error occured.');
+                    }
+
+                    $http.post('/Player/submitData', { Player: $scope.Player })
+                        .success(onSuccess)
+                        .error(onError);
+
+                };
+
+
+                $scope.resetForm = function () {
+                    $scope.Player = angular.copy($scope.OriginalPlayer);
+                };
+            });
+        </script>
+    </body>
