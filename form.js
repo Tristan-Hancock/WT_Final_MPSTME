@@ -4,4 +4,4 @@ function output()
 }
 
 
-console.log(angular.toJson($scope.));
+console.log(angular.toJson
