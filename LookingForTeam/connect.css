@@ -10,7 +10,7 @@ body {
     vertical-align:middle;
 }
 body{
-    background-image: url("css/back.jpg");
+    background-image: url("../back.jpg");
     background-color: grey;
     max-width: 10%;  
 height: auto;  

@@ -3,16 +3,14 @@
 <head>
     <script src="~/Scripts/angular.js"></script>
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <link rel="stylesheet" href="Custom.css">
+    <link rel="stylesheet" href=".../GameSelect/Custom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <img src="css/espind.jpeg" alt="mainlogo" class="centre"> 
 </head>
 <body ng-controller="PlayerController"> 
     <div class="register">
     <h1 style="text-align:center">Customs Registration</h1>
     <form ng-submit="sendPlayerInfo()" >
-        
-        <div>
+        <div
             <label for="username">Username: </label><br />
             <input class="text-center" name="Player.Username" type="text" id="Username" ng-model="Player.Username" pattern="[a-zA-Z{1,}]" required /> <br />
             <span ng-show="myForm.$submitted || myForm.name.$dirty">
