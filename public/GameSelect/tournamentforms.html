@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>something</title>
+    <script src="~/Scripts/angular.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <link rel="stylesheet" href="Custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <img src="espind.jpeg" alt="mainlogo" class="centre"> 
+</head>
+<body ng-app="PlayerApp">
+    <div class="register" ng-controller="PlayerController">
+      <h1 style="text-align: center">Customs Registration</h1>
+      <form
+        data-netlify="true"
+        autocomplete="off"
+        name="CustomsForm"
+        method="POST"
+        data-aos="fade-up"
+        data-aos-easing="linear"
+        data-aos-delay="300"
+        novalidate
+        ng-submit="sendPlayerInfo(Cusername, CdiscordTag, CteamName, CIGLName, Cnumber)"
+      >
+        <div>
+          <label for="username">Username: </label><br />
+          <input
+            class="text-center"
+            name="Username"
+            type="text"
+            id="Username"
+            ng-model="Cusername"
+            ng-required="true"
+          />
+          <br />
+          <span
+            ng-show="CustomsForm.Username.$touched && CustomsForm.Username.$invalid"
+          >
+            <span
+              style="color: rgb(236, 9, 9); font-weight: bold"
+              class="error"
+              ng-show="myForm.name.$error.pattern"
+              ><i class="fa fa-exclamation-circle"></i>Cannot be Empty</span
+            > </span
+          ><br /><br />
+
+          <label for="discordTag">DiscordTag</label><br />
+          <input
+            name="Player.discordTag"
+            type="text"
+            id="discordName"
+            ng-model="CdiscordTag"
+          />
+          <br />
+
+          <label for="TeamName">Team Name</label><br />
+          <input
+            type="text"
+            id="Teaminfo"
+            ng-model="CteamName"
+            required
+          />
+          <br />
+          <span ng-show="myForm.$submitted || myForm.name.$dirty">
+            <span
+              style="color: rgb(236, 9, 9); font-weight: bold"
+              class="error"
+              ng-show="myForm.name.$error.pattern"
+              ><i class="fa fa-exclamation-circle"></i>Cannot have numbers</span
+            > </span
+          ><br /><br />
+
+          <label for="IGLName">IGL Name</label><br />
+          <input
+            type="text"
+            id="IGLinfo"
+            ng-model="CIGLName"
+            required
+          />
+          <br />
+          <span ng-show="myForm.$submitted || myForm.name.$dirty">
+            <span
+              style="color: rgb(236, 9, 9); font-weight: bold"
+              class="error"
+              ng-show="myForm.name.$error.pattern"
+              ><i class="fa fa-exclamation-circle"></i>Cannot have numbers</span
+            > </span
+          ><br /><br />
+
+          <label for="Date of Custom">Date for Custom</label><br />
+          <input type="date" id="doc" ng-model="Cdate" /> <br /><br />
+
+          <label for="PhoneNumber">Phone Number</label><br />
+          <input
+            type="text"
+            name="Player.number"
+            id="number"
+            ng-model="Cnumber"
+            ng-minlength="0"
+            ng-maxlength="10"
+          />
+          <br />
+          <span ng-show="myForm.$submitted || myForm.phone.$dirty">
+            <span
+              style="color: rgb(236, 9, 9); font-weight: bold"
+              class="error"
+              ng-show="myForm.phone.$error.required"
+              ><i class="fa fa-exclamation-circle"></i>Phone number
+              required</span
+            >
+            <span
+              class="error"
+              ng-show="((myForm.phone.$error.minlength || myForm.phone.$error.maxlength) && myForm.phone.$dirty)"
+            ></span>
+          </span>
+
+          <label for="customTime">Time for Custom</label><br />
+          <input
+            type="time"
+            name="Player.CustomTime"
+            id="doc"
+            ng-model="CustomTime"
+          />
+          <br /><br />
+
+          <input type="submit" value="Submit" />
+          <input type="reset" ng-click="resetForm()" value="Reset" />
+        </div>
+      </form>
+      <h2 style="color: green;">{{success}}</h2>
+
+    </div>
+    <script>
+      var PlayerApp = angular.module("PlayerApp", []);
+
+      PlayerApp.controller("PlayerController", function ($scope, $http) {
+        $scope.success="";
+
+        $scope.sendPlayerInfo = function (n, dt, tn, igl, no, d) {
+          $http({
+            method: "POST",
+            url: "/tournamentReg",
+            data: {
+              username: n,
+              dt: dt,
+              tn: tn,
+              igl: igl,
+              phoneNumber: no,
+            },
+          })
+            .then(() => {
+                $scope.success = "success";
+
+            console.log("done!!!");
+            })
+            .catch((error) => {
+              throw err;
+            });
+        };
+      });
+    </script>
+  </body>
+</html>
+</html>

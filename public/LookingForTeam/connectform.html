@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html >
-    <HEAD>
+<html lang="en">
+    <head>
         <title>Player Recruitment</title>
         <meta charset="UTF-8">
         <META name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,20 +11,21 @@
             
             <img src="espind.jpeg" alt="mainLogo " classs="centre">
         
-    </HEAD>
-    <body ng-app="">
-        <div class="cen">
-            <form name="myForm" nonvalidate>
+        </head>
+    <body ng-app="PlayerConnectApp">
+        <div class="cen" ng-controller="PlayerConnect">
+            <form name="myForm" nonvalidate ng-submit="playerSubmit(Pusername, playerID)">
                 <h1>Fill in details below to register</h1>
-                <label for="username">Player ID: </label><br />
-                <input type="number" name="idnumber" ng-model="idnumber" ng-minlength="1" ng-maxlength="10" required> <br>
+                <label for="playerid">Player ID: </label><br />
+                <input type="number" ng-model="playerID" > <br>
+                <p>{{playerID}}</p>
                 <span ng-show="myForm.$submitted || myForm.$dirty">
                     <span class="error" ng-show="myForm.phone.$error.required"><i class="fa fa-exclamation-circle">Player ID required</i></span>
                     <span class="error" ng-show="myForm.phone.$error.required"><i class="fa fa-exclamation-circle">Player ID should be 10 digits </i></span>
                 </span><br></br>
                 <label for="username">Username: </label><br />
-                <input class="text-center" name="Player.Username" type="text" id="Username" ng-model="Player.Username"
-                    pattern="[a-zA-Z{1,}]" required /> <br />
+                <input class="text-center" type="text" id="Username" ng-model="Pusername"/> <br />
+                    <p>{{Pusername}}</p>
                 <span ng-show="myForm.$submitted || myForm.name.$dirty">
                     <span style="color:rgb(236, 9, 9);font-weight:bold" class="error"
                         ng-show="myForm.name.$error.pattern"><i class="fa fa-exclamation-circle"></i>Cannot be
@@ -33,13 +34,6 @@
 
                 <label for="Payer Achievement">Player Achievement: </label><br />
                 <input type="file" name="upload" accept="application/pdf,application/vnd.ms-excel" /> <br> </br>
-                
-
-
-
-
-
-
 
 
                 <input type="submit" value="Submit" />
@@ -47,7 +41,40 @@
 
 
             </form>
+            <h2 style="color: green;">{{success}}</h2>
+
         </div>
-         
-        </script>
+         <script>
+             var pca = angular.module("PlayerConnectApp", [])
+
+             pca.controller("PlayerConnect", function ($scope, $http) {
+
+                $scope.success="";
+
+                $scope.playerSubmit = function (ur, pi) {
+                    console.log(pi);
+                    console.log(ur);
+
+
+                    $http({
+                        method: "POST",
+                        url: "/cnntform",
+                        data: {
+                            username: ur,
+                            PlayerID: pi
+                        },
+                    })
+                        .then(() => {
+                            $scope.success = "success";
+
+                        console.log("done!!!");
+                        })
+                        .catch((error) => {
+                        throw err;
+                        });
+                            }
+                            
+             })
+         </script>
     </body>
+</html>
